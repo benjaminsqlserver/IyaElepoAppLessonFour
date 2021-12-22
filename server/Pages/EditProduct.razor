@@ -1,0 +1,67 @@
+﻿@page "/edit-product/{ProductID}"
+@layout MainLayout
+@inherits IyaElepoApp.Pages.EditProductComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using IyaElepoApp.Models.ConData
+@using Microsoft.AspNetCore.Identity;
+@using IyaElepoApp.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@product" TItem="IyaElepoApp.Models.ConData.Product" Visible="@(product != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ProductName" style="width: 100%" Text="Product Name">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="display: block; width: 100%" @bind-Value="@(product.ProductName)" Name="ProductName">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="ProductName" style="position: absolute" Text="Product Name is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ProductTypeID" style="width: 100%" Text="Product Type">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Data="@getProductTypesResult" Placeholder="Choose Product Type" style="display: block; width: 100%" TextProperty="ProductTypeName" @bind-Value="@(product.ProductTypeID)" ValueProperty="ProductTypeID" Name="ProductTypeID">
+                </RadzenDropDown>
+                <RadzenRequiredValidator Component="ProductTypeID" DefaultValue="0" style="position: absolute" Text="Product Type is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Picture" style="width: 100%" Text="Picture">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenFileInput ChooseText="Choose A Picture" @bind-Value="@(product.Picture)" Name="FileInput0">
+                </RadzenFileInput>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

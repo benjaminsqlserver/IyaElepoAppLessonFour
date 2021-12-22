@@ -1,0 +1,364 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ProductSupplierName",
+                              "name": "ProductSupplierNameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Product Supplier Name",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 300,
+                              "name": "ProductSupplierName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${productsupplier.ProductSupplierName}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "ProductSupplierName",
+                              "name": "ProductSupplierNameRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Supplier Name is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "OfficeAddress",
+                              "name": "OfficeAddressLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Office Address",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "OfficeAddress",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${productsupplier.OfficeAddress}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "OfficeAddress",
+                              "name": "OfficeAddressRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Office Address is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Email",
+                              "name": "EmailLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Email",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "Email",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${productsupplier.Email}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "Email",
+                              "name": "emailValidator0",
+                              "text": "Please Enter Valid Email Address!",
+                              "type": "email-validator"
+                            },
+                            {
+                              "component": "Email",
+                              "name": "EmailRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Email is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "PhoneNumber",
+                              "name": "PhoneNumberLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Phone Number",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "PhoneNumber",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${productsupplier.PhoneNumber}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "PhoneNumber",
+                              "name": "PhoneNumberRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Phone Number is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ContactPerson",
+                              "name": "ContactPersonLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Contact Person",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 150,
+                              "name": "ContactPerson",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${productsupplier.ContactPerson}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${productsupplier}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update ProductSupplier",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "ConData.updateProductSupplier",
+                        "parameters": [
+                          {
+                            "name": "ProductSupplierID",
+                            "value": "${parameters.ProductSupplierID}"
+                          },
+                          {
+                            "name": "ProductSupplier",
+                            "value": "${productsupplier}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "condition": "",
+                            "result": "${productsupplier}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "IyaElepoApp.Models.ConData.ProductSupplier",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${productsupplier != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "error": [],
+        "name": "ConData.getProductSupplierByProductSupplierID",
+        "parameters": [
+          {
+            "name": "ProductSupplierID",
+            "value": "${parameters.ProductSupplierID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "productsupplier",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IyaElepoApp.Models.ConData.ProductSupplier"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Product Supplier",
+  "access": [
+    "Authenticated"
+  ]
+}

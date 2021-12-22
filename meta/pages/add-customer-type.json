@@ -1,0 +1,155 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "CustomerTypeName",
+                              "name": "CustomerTypeNameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Customer Type Name",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "CustomerTypeName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${customertype.CustomerTypeName}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "CustomerTypeName",
+                              "name": "CustomerTypeNameRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Customer Type is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${customertype}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new CustomerType!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "ConData.createCustomerType",
+                        "parameters": [
+                          {
+                            "name": "CustomerType",
+                            "value": "${customertype}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "result": "${customertype}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "IyaElepoApp.Models.ConData.CustomerType",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${customertype != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "customertype",
+        "type": "set",
+        "value": "new IyaElepoApp.Models.ConData.CustomerType(){}",
+        "valueType": "IyaElepoApp.Models.ConData.CustomerType"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Customer Type",
+  "access": [
+    "Authenticated"
+  ]
+}

@@ -1,0 +1,430 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "CustomerName",
+                              "name": "CustomerNameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Customer Name",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 300,
+                              "name": "CustomerName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${customer.CustomerName}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "CustomerName",
+                              "name": "CustomerNameRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Customer Name is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "CustomerTypeID",
+                              "name": "CustomerTypeIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Customer Type",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getCustomerTypesResult}",
+                              "name": "CustomerTypeID",
+                              "placeholder": "Choose Customer Type",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "CustomerTypeName",
+                              "type": "dropdown",
+                              "value": "${customer.CustomerTypeID}",
+                              "valueProperty": "CustomerTypeID",
+                              "valueType": "int"
+                            },
+                            {
+                              "component": "CustomerTypeID",
+                              "defaultValue": "0",
+                              "name": "CustomerTypeIDRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Customer Type is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Address",
+                              "name": "AddressLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Address",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Address",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${customer.Address}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "Address",
+                              "name": "AddressRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Address is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Email",
+                              "name": "EmailLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Email",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "Email",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${customer.Email}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "Email",
+                              "name": "EmailRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Email is required",
+                              "type": "required-validator"
+                            },
+                            {
+                              "component": "Email",
+                              "name": "emailValidator0",
+                              "text": "Please Enter Valid Email Address!",
+                              "type": "email-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "PhoneNumber",
+                              "name": "PhoneNumberLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Phone Number",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "PhoneNumber",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${customer.PhoneNumber}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "PhoneNumber",
+                              "name": "PhoneNumberRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Phone Number is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ContactPerson",
+                              "name": "ContactPersonLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Contact Person",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 150,
+                              "name": "ContactPerson",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${customer.ContactPerson}",
+                              "valueType": "string"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${customer}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update Customer",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "ConData.updateCustomer",
+                        "parameters": [
+                          {
+                            "name": "CustomerID",
+                            "value": "${parameters.CustomerID}"
+                          },
+                          {
+                            "name": "Customer",
+                            "value": "${customer}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "condition": "",
+                            "result": "${customer}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "IyaElepoApp.Models.ConData.Customer",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${customer != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "error": [],
+        "name": "ConData.getCustomerByCustomerID",
+        "parameters": [
+          {
+            "name": "CustomerID",
+            "value": "${parameters.CustomerID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "customer",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IyaElepoApp.Models.ConData.Customer"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "ConData.getCustomerTypes",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getCustomerTypesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<IyaElepoApp.Models.ConData.CustomerType>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Customer",
+  "access": [
+    "Authenticated"
+  ]
+}

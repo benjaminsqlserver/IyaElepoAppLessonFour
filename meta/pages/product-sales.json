@@ -1,0 +1,300 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Product Sales"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-product-sale",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "condition": "${event?.Value == \"csv\"}",
+                        "fileName": "Product Sales",
+                        "name": "ConData.getProductSales",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "Customer,Product"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "ProductSaleID,SalesDate,Customer.CustomerName as CustomerCustomerName,Product.ProductName as ProductProductName,QuantityInLitres"
+                          }
+                        ],
+                        "type": "export"
+                      },
+                      {
+                        "condition": "${event == null || event.Value == \"xlsx\"}",
+                        "fileName": "Product Sales",
+                        "format": "xlsx",
+                        "name": "ConData.getProductSales",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "Customer,Product"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "ProductSaleID,SalesDate,Customer.CustomerName as CustomerCustomerName,Product.ProductName as ProductProductName,QuantityInLitres"
+                          }
+                        ],
+                        "type": "export"
+                      }
+                    ]
+                  },
+                  "icon": "get_app",
+                  "items": [
+                    {
+                      "icon": "",
+                      "text": "Excel",
+                      "value": "xlsx"
+                    },
+                    {
+                      "icon": "",
+                      "text": "CSV",
+                      "value": "csv"
+                    }
+                  ],
+                  "name": "splitbutton0",
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Export",
+                  "type": "splitbutton"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "@oninput",
+                      "value": "@(async(args) => {search = $\"{args.Value}\";await grid0.GoToPage(0);await Load();})"
+                    }
+                  ],
+                  "name": "textbox0",
+                  "placeholder": "Search ...",
+                  "style": {
+                    "display": "block",
+                    "marginBottom": "10px",
+                    "width": "100%"
+                  },
+                  "type": "textbox",
+                  "value": ""
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "filterMode": "advanced",
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getProductSalesResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "ProductSaleID",
+                            "value": "${event.ProductSaleID}"
+                          }
+                        ],
+                        "path": "edit-product-sale",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "ProductSaleID",
+                      "title": "Product Sale ID"
+                    },
+                    {
+                      "property": "SalesDate",
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Sales Date"
+                    },
+                    {
+                      "property": "CustomerID",
+                      "sortProperty": "Customer.CustomerName",
+                      "groupProperty": "Customer.CustomerName",
+                      "filterProperty": "Customer.CustomerName",
+                      "template": "${data.Customer?.CustomerName}",
+                      "title": "Customer"
+                    },
+                    {
+                      "property": "ProductID",
+                      "sortProperty": "Product.ProductName",
+                      "groupProperty": "Product.ProductName",
+                      "filterProperty": "Product.ProductName",
+                      "template": "${data.Product?.ProductName}",
+                      "title": "Product"
+                    },
+                    {
+                      "property": "QuantityInLitres",
+                      "title": "Quantity In Litres"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete ProductSale",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "ConData.deleteProductSale",
+                                "parameters": [
+                                  {
+                                    "name": "ProductSaleID",
+                                    "value": "${data.ProductSaleID}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "await grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "datagrid",
+                  "itemType": "IyaElepoApp.Models.ConData.ProductSale"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "condition": "string.IsNullOrEmpty(search)",
+        "name": "search",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "name": "ConData.getProductSales",
+        "parameters": [
+          {
+            "name": "$filter",
+            "operator": "or",
+            "value": []
+          },
+          {
+            "name": "$expand",
+            "value": "Customer,Product"
+          }
+        ],
+        "then": [
+          {
+            "name": "getProductSalesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<IyaElepoApp.Models.ConData.ProductSale>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Product Sales",
+  "layout": "Main",
+  "access": [
+    "Authenticated"
+  ]
+}

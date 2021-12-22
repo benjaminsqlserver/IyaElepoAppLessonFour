@@ -1,0 +1,49 @@
+﻿@page "/customer-types"
+@layout MainLayout
+@inherits IyaElepoApp.Pages.CustomerTypesComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using IyaElepoApp.Models.ConData
+@using Microsoft.AspNetCore.Identity;
+@using IyaElepoApp.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Customer Types">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="Export" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="CSV" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getCustomerTypesResult" TItem="IyaElepoApp.Models.ConData.CustomerType" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.CustomerType" Property="CustomerTypeID" Title="Customer Type ID">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.CustomerType" Property="CustomerTypeName" Title="Customer Type Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.CustomerType" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="iyaElepoAppModelsConDataCustomerType">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, iyaElepoAppModelsConDataCustomerType))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

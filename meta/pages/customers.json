@@ -1,0 +1,334 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Customers"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-customer",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "condition": "${event?.Value == \"csv\"}",
+                        "fileName": "Customers",
+                        "name": "ConData.getCustomers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "CustomerType"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "CustomerID,CustomerName,CustomerType.CustomerTypeName as CustomerTypeCustomerTypeName,Address,Email,PhoneNumber,ContactPerson"
+                          }
+                        ],
+                        "type": "export"
+                      },
+                      {
+                        "condition": "${event == null || event.Value == \"xlsx\"}",
+                        "fileName": "Customers",
+                        "format": "xlsx",
+                        "name": "ConData.getCustomers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "${(string.IsNullOrEmpty(grid0.Query.Filter)? \"true\" : grid0.Query.Filter)}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${grid0.Query.OrderBy}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "CustomerType"
+                          },
+                          {
+                            "name": "$select",
+                            "value": "CustomerID,CustomerName,CustomerType.CustomerTypeName as CustomerTypeCustomerTypeName,Address,Email,PhoneNumber,ContactPerson"
+                          }
+                        ],
+                        "type": "export"
+                      }
+                    ]
+                  },
+                  "icon": "get_app",
+                  "items": [
+                    {
+                      "icon": "",
+                      "text": "Excel",
+                      "value": "xlsx"
+                    },
+                    {
+                      "icon": "",
+                      "text": "CSV",
+                      "value": "csv"
+                    }
+                  ],
+                  "name": "splitbutton0",
+                  "style": {
+                    "marginLeft": "10px",
+                    "marginBottom": "10px"
+                  },
+                  "text": "Export",
+                  "type": "splitbutton"
+                },
+                {
+                  "attributes": [
+                    {
+                      "name": "@oninput",
+                      "value": "@(async(args) => {search = $\"{args.Value}\";await grid0.GoToPage(0);await Load();})"
+                    }
+                  ],
+                  "name": "textbox0",
+                  "placeholder": "Search ...",
+                  "style": {
+                    "display": "block",
+                    "marginBottom": "10px",
+                    "width": "100%"
+                  },
+                  "type": "textbox",
+                  "value": ""
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "filterMode": "advanced",
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getCustomersResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "CustomerID",
+                            "value": "${event.CustomerID}"
+                          }
+                        ],
+                        "path": "edit-customer",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "CustomerID",
+                      "title": "Customer ID"
+                    },
+                    {
+                      "property": "CustomerName",
+                      "title": "Customer Name"
+                    },
+                    {
+                      "property": "CustomerTypeID",
+                      "sortProperty": "CustomerType.CustomerTypeName",
+                      "groupProperty": "CustomerType.CustomerTypeName",
+                      "filterProperty": "CustomerType.CustomerTypeName",
+                      "template": "${data.CustomerType?.CustomerTypeName}",
+                      "title": "Customer Type"
+                    },
+                    {
+                      "property": "Address",
+                      "title": "Address"
+                    },
+                    {
+                      "property": "Email",
+                      "title": "Email"
+                    },
+                    {
+                      "property": "PhoneNumber",
+                      "title": "Phone Number"
+                    },
+                    {
+                      "property": "ContactPerson",
+                      "title": "Contact Person"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete Customer",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "ConData.deleteCustomer",
+                                "parameters": [
+                                  {
+                                    "name": "CustomerID",
+                                    "value": "${data.CustomerID}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "await grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "datagrid",
+                  "itemType": "IyaElepoApp.Models.ConData.Customer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "condition": "string.IsNullOrEmpty(search)",
+        "name": "search",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "name": "ConData.getCustomers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "operator": "or",
+            "value": [
+              {
+                "operation": "contains",
+                "property": "CustomerName",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Address",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "Email",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "PhoneNumber",
+                "type": "string",
+                "value": "\"${search}\""
+              },
+              {
+                "operation": "contains",
+                "property": "ContactPerson",
+                "type": "string",
+                "value": "\"${search}\""
+              }
+            ]
+          },
+          {
+            "name": "$expand",
+            "value": "CustomerType"
+          }
+        ],
+        "then": [
+          {
+            "name": "getCustomersResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<IyaElepoApp.Models.ConData.Customer>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Customers",
+  "layout": "Main",
+  "access": [
+    "Authenticated"
+  ]
+}

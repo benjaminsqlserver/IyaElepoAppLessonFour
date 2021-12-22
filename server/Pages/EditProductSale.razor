@@ -1,0 +1,81 @@
+﻿@page "/edit-product-sale/{ProductSaleID}"
+@layout MainLayout
+@inherits IyaElepoApp.Pages.EditProductSaleComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using IyaElepoApp.Models.ConData
+@using Microsoft.AspNetCore.Identity;
+@using IyaElepoApp.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@productsale" TItem="IyaElepoApp.Models.ConData.ProductSale" Visible="@(productsale != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="SalesDate" style="width: 100%" Text="Sales Date">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(productsale.SalesDate)" Name="SalesDate" Change="@SalesDateChange">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="SalesDate" style="position: absolute" Text="Sales Date is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="CustomerID" style="width: 100%" Text="Customer">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Data="@getCustomersResult" Placeholder="Choose Customer" style="display: block; width: 100%" TextProperty="CustomerName" @bind-Value="@(productsale.CustomerID)" ValueProperty="CustomerID" Name="CustomerID">
+                </RadzenDropDown>
+                <RadzenRequiredValidator Component="CustomerID" DefaultValue="0" style="position: absolute" Text="Customer is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ProductID" style="width: 100%" Text="Product">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Data="@getProductsResult" Placeholder="Choose Product" style="display: block; width: 100%" TextProperty="ProductName" @bind-Value="@(productsale.ProductID)" ValueProperty="ProductID" Name="ProductID">
+                </RadzenDropDown>
+                <RadzenRequiredValidator Component="ProductID" DefaultValue="0" style="position: absolute" Text="Product is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="QuantityInLitres" style="width: 100%" Text="Quantity In Litres">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenNumeric style="display: block; width: 100%" @bind-Value="@(productsale.QuantityInLitres)" Name="QuantityInLitres">
+                </RadzenNumeric>
+                <RadzenRequiredValidator Component="QuantityInLitres" style="position: absolute" Text="Quantity In Litres is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

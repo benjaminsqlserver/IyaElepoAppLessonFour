@@ -1,0 +1,61 @@
+﻿@page "/product-sales"
+@layout MainLayout
+@inherits IyaElepoApp.Pages.ProductSalesComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using IyaElepoApp.Models.ConData
+@using Microsoft.AspNetCore.Identity;
+@using IyaElepoApp.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Product Sales">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="Export" Click="@Splitbutton0Click">
+          <ChildContent>
+            <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+            </RadzenSplitButtonItem>
+            <RadzenSplitButtonItem Text="CSV" Value="csv">
+            </RadzenSplitButtonItem>
+          </ChildContent>
+        </RadzenSplitButton>
+        <RadzenTextBox Placeholder="Search ..." style="display: block; margin-bottom: 10px; width: 100%" Name="Textbox0" @oninput="@(async(args) => {search = $"{args.Value}";await grid0.GoToPage(0);await Load();})">
+        </RadzenTextBox>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="@getProductSalesResult" TItem="IyaElepoApp.Models.ConData.ProductSale" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.ProductSale" Property="ProductSaleID" Title="Product Sale ID">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.ProductSale" Property="SalesDate" FormatString="{0:dd/MM/yyyy}" Title="Sales Date">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.ProductSale" Property="CustomerID" SortProperty="Customer.CustomerName" GroupProperty="Customer.CustomerName" FilterProperty="Customer.CustomerName" Title="Customer">
+              <Template Context="data">
+              @(data.Customer?.CustomerName)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.ProductSale" Property="ProductID" SortProperty="Product.ProductName" GroupProperty="Product.ProductName" FilterProperty="Product.ProductName" Title="Product">
+              <Template Context="data">
+              @(data.Product?.ProductName)
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.ProductSale" Property="QuantityInLitres" Title="Quantity In Litres">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="IyaElepoApp.Models.ConData.ProductSale" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="iyaElepoAppModelsConDataProductSale">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, iyaElepoAppModelsConDataProductSale))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

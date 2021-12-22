@@ -1,0 +1,3425 @@
+{
+  "info": {
+    "title": "ConData",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 15
+  },
+  "definitions": {
+    "AspNetRole": {
+      "x-table": "dbo.AspNetRoles",
+      "resource": "AspNetRoles",
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-navigation": [
+            {
+              "inversePropertyName": "AspNetRole",
+              "name": "AspNetRoleClaims",
+              "type": "AspNetRoleClaim"
+            },
+            {
+              "inversePropertyName": "AspNetRole",
+              "name": "AspNetUserRoles",
+              "type": "AspNetUserRole"
+            }
+          ]
+        },
+        "ConcurrencyStamp": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string",
+          "length": 256
+        },
+        "NormalizedName": {
+          "type": "string",
+          "length": 256
+        },
+        "AspNetRoleClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetRoleClaim"
+          }
+        },
+        "AspNetUserRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserRole"
+          }
+        }
+      }
+    },
+    "AspNetRoleClaim": {
+      "x-table": "dbo.AspNetRoleClaims",
+      "resource": "AspNetRoleClaims",
+      "required": [
+        "RoleId"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "ClaimType": {
+          "type": "string"
+        },
+        "ClaimValue": {
+          "type": "string"
+        },
+        "AspNetRole": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetRole"
+        },
+        "RoleId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-foreignKey": {
+            "parentTable": "AspNetRoles",
+            "parentEntityType": "AspNetRole",
+            "type": "AspNetRole",
+            "principalKey": "Id",
+            "name": "AspNetRole",
+            "textProperty": "ConcurrencyStamp",
+            "navigationProperty": "AspNetRoleClaims"
+          }
+        }
+      }
+    },
+    "AspNetUser": {
+      "x-table": "dbo.AspNetUsers",
+      "resource": "AspNetUsers",
+      "required": [
+        "Id",
+        "AccessFailedCount"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-navigation": [
+            {
+              "inversePropertyName": "AspNetUser",
+              "name": "AspNetUserClaims",
+              "type": "AspNetUserClaim"
+            },
+            {
+              "inversePropertyName": "AspNetUser",
+              "name": "AspNetUserLogins",
+              "type": "AspNetUserLogin"
+            },
+            {
+              "inversePropertyName": "AspNetUser",
+              "name": "AspNetUserRoles",
+              "type": "AspNetUserRole"
+            }
+          ]
+        },
+        "AccessFailedCount": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "ConcurrencyStamp": {
+          "type": "string"
+        },
+        "Email": {
+          "type": "string",
+          "length": 256
+        },
+        "EmailConfirmed": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "LockoutEnabled": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "LockoutEnd": {
+          "type": "string",
+          "format": "date-time-offset"
+        },
+        "NormalizedEmail": {
+          "type": "string",
+          "length": 256
+        },
+        "NormalizedUserName": {
+          "type": "string",
+          "length": 256
+        },
+        "PasswordHash": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "PhoneNumberConfirmed": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "SecurityStamp": {
+          "type": "string"
+        },
+        "TwoFactorEnabled": {
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "UserName": {
+          "type": "string",
+          "length": 256
+        },
+        "FirstName": {
+          "type": "string",
+          "length": 50
+        },
+        "MiddleName": {
+          "type": "string",
+          "length": 50
+        },
+        "Surname": {
+          "type": "string",
+          "length": 50
+        },
+        "CustomerID": {
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64"
+        },
+        "SupplierID": {
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64"
+        },
+        "GenderID": {
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "AspNetUserClaims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserClaim"
+          }
+        },
+        "AspNetUserLogins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserLogin"
+          }
+        },
+        "AspNetUserRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AspNetUserRole"
+          }
+        }
+      }
+    },
+    "AspNetUserClaim": {
+      "x-table": "dbo.AspNetUserClaims",
+      "resource": "AspNetUserClaims",
+      "required": [
+        "UserId"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "ClaimType": {
+          "type": "string"
+        },
+        "ClaimValue": {
+          "type": "string"
+        },
+        "AspNetUser": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetUser"
+        },
+        "UserId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-foreignKey": {
+            "parentTable": "AspNetUsers",
+            "parentEntityType": "AspNetUser",
+            "type": "AspNetUser",
+            "principalKey": "Id",
+            "name": "AspNetUser",
+            "textProperty": "ConcurrencyStamp",
+            "navigationProperty": "AspNetUserClaims"
+          }
+        }
+      }
+    },
+    "AspNetUserLogin": {
+      "x-table": "dbo.AspNetUserLogins",
+      "resource": "AspNetUserLogins",
+      "required": [
+        "LoginProvider",
+        "ProviderKey",
+        "UserId"
+      ],
+      "properties": {
+        "LoginProvider": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450
+        },
+        "ProviderKey": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450
+        },
+        "ProviderDisplayName": {
+          "type": "string"
+        },
+        "AspNetUser": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetUser"
+        },
+        "UserId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-foreignKey": {
+            "parentTable": "AspNetUsers",
+            "parentEntityType": "AspNetUser",
+            "type": "AspNetUser",
+            "principalKey": "Id",
+            "name": "AspNetUser",
+            "textProperty": "ConcurrencyStamp",
+            "navigationProperty": "AspNetUserLogins"
+          }
+        }
+      }
+    },
+    "AspNetUserRole": {
+      "x-table": "dbo.AspNetUserRoles",
+      "resource": "AspNetUserRoles",
+      "required": [
+        "UserId",
+        "RoleId"
+      ],
+      "properties": {
+        "AspNetUser": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetUser"
+        },
+        "UserId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-key": true,
+          "x-foreignKey": {
+            "parentTable": "AspNetUsers",
+            "parentEntityType": "AspNetUser",
+            "type": "AspNetUser",
+            "principalKey": "Id",
+            "name": "AspNetUser",
+            "textProperty": "ConcurrencyStamp",
+            "navigationProperty": "AspNetUserRoles"
+          }
+        },
+        "AspNetRole": {
+          "type": "object",
+          "$ref": "#/definitions/AspNetRole"
+        },
+        "RoleId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 450,
+          "x-key": true,
+          "x-foreignKey": {
+            "parentTable": "AspNetRoles",
+            "parentEntityType": "AspNetRole",
+            "type": "AspNetRole",
+            "principalKey": "Id",
+            "name": "AspNetRole",
+            "textProperty": "ConcurrencyStamp",
+            "navigationProperty": "AspNetUserRoles"
+          }
+        }
+      }
+    },
+    "AspNetUserToken": {
+      "x-table": "dbo.AspNetUserTokens",
+      "resource": "AspNetUserTokens",
+      "required": [
+        "UserId",
+        "LoginProvider",
+        "Name"
+      ],
+      "properties": {
+        "UserId": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450
+        },
+        "LoginProvider": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450
+        },
+        "Name": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 450
+        },
+        "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "Customer": {
+      "x-table": "dbo.Customers",
+      "resource": "Customers",
+      "required": [
+        "CustomerName",
+        "CustomerTypeID",
+        "Address",
+        "Email",
+        "PhoneNumber"
+      ],
+      "properties": {
+        "CustomerID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Customer",
+              "name": "ProductSales",
+              "type": "ProductSale"
+            }
+          ]
+        },
+        "CustomerName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 300
+        },
+        "CustomerType": {
+          "type": "object",
+          "$ref": "#/definitions/CustomerType"
+        },
+        "CustomerTypeID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "CustomerTypes",
+            "parentEntityType": "CustomerType",
+            "type": "CustomerType",
+            "principalKey": "CustomerTypeID",
+            "name": "CustomerType",
+            "textProperty": "CustomerTypeName",
+            "navigationProperty": "Customers"
+          }
+        },
+        "Address": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Email": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "PhoneNumber": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "ContactPerson": {
+          "type": "string",
+          "length": 150
+        },
+        "ProductSales": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductSale"
+          }
+        }
+      }
+    },
+    "CustomerType": {
+      "x-table": "dbo.CustomerTypes",
+      "resource": "CustomerTypes",
+      "required": [
+        "CustomerTypeName"
+      ],
+      "properties": {
+        "CustomerTypeID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "CustomerType",
+              "name": "Customers",
+              "type": "Customer"
+            }
+          ]
+        },
+        "CustomerTypeName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "Customers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Customer"
+          }
+        }
+      }
+    },
+    "Gender": {
+      "x-table": "dbo.Genders",
+      "resource": "Genders",
+      "required": [
+        "GenderName"
+      ],
+      "properties": {
+        "GenderID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "GenderName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        }
+      }
+    },
+    "Product": {
+      "x-table": "dbo.Products",
+      "resource": "Products",
+      "required": [
+        "ProductName",
+        "ProductTypeID"
+      ],
+      "properties": {
+        "ProductID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Product",
+              "name": "ProductSupplies",
+              "type": "ProductSupply"
+            },
+            {
+              "inversePropertyName": "Product",
+              "name": "ProductSales",
+              "type": "ProductSale"
+            }
+          ]
+        },
+        "ProductName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "ProductType": {
+          "type": "object",
+          "$ref": "#/definitions/ProductType"
+        },
+        "ProductTypeID": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "ProductTypes",
+            "parentEntityType": "ProductType",
+            "type": "ProductType",
+            "principalKey": "ProductTypeID",
+            "name": "ProductType",
+            "textProperty": "ProductTypeName",
+            "navigationProperty": "Products"
+          }
+        },
+        "Picture": {
+          "type": "string"
+        },
+        "ProductSupplies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductSupply"
+          }
+        },
+        "ProductSales": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductSale"
+          }
+        }
+      }
+    },
+    "ProductSale": {
+      "x-table": "dbo.ProductSales",
+      "resource": "ProductSales",
+      "required": [
+        "SalesDate",
+        "CustomerID",
+        "ProductID",
+        "QuantityInLitres"
+      ],
+      "properties": {
+        "ProductSaleID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64"
+        },
+        "SalesDate": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime"
+        },
+        "Customer": {
+          "type": "object",
+          "$ref": "#/definitions/Customer"
+        },
+        "CustomerID": {
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64",
+          "x-foreignKey": {
+            "parentTable": "Customers",
+            "parentEntityType": "Customer",
+            "type": "Customer",
+            "principalKey": "CustomerID",
+            "name": "Customer",
+            "textProperty": "CustomerName",
+            "navigationProperty": "ProductSales"
+          }
+        },
+        "Product": {
+          "type": "object",
+          "$ref": "#/definitions/Product"
+        },
+        "ProductID": {
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64",
+          "x-foreignKey": {
+            "parentTable": "Products",
+            "parentEntityType": "Product",
+            "type": "Product",
+            "principalKey": "ProductID",
+            "name": "Product",
+            "textProperty": "ProductName",
+            "navigationProperty": "ProductSales"
+          }
+        },
+        "QuantityInLitres": {
+          "x-nullable": false,
+          "x-precision": 18,
+          "type": "number",
+          "format": "decimal"
+        }
+      }
+    },
+    "ProductSupplier": {
+      "x-table": "dbo.ProductSuppliers",
+      "resource": "ProductSuppliers",
+      "required": [
+        "ProductSupplierName",
+        "OfficeAddress",
+        "Email",
+        "PhoneNumber"
+      ],
+      "properties": {
+        "ProductSupplierID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64",
+          "x-navigation": [
+            {
+              "inversePropertyName": "ProductSupplier",
+              "name": "ProductSupplies",
+              "type": "ProductSupply"
+            }
+          ]
+        },
+        "ProductSupplierName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 300
+        },
+        "OfficeAddress": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Email": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "PhoneNumber": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "ContactPerson": {
+          "type": "string",
+          "length": 150
+        },
+        "ProductSupplies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductSupply"
+          }
+        }
+      }
+    },
+    "ProductSupply": {
+      "x-table": "dbo.ProductSupplies",
+      "resource": "ProductSupplies",
+      "required": [
+        "SupplyDate",
+        "ProductSupplierID",
+        "ProductID",
+        "QuantityInLitres"
+      ],
+      "properties": {
+        "SupplyID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64"
+        },
+        "SupplyDate": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime"
+        },
+        "ProductSupplier": {
+          "type": "object",
+          "$ref": "#/definitions/ProductSupplier"
+        },
+        "ProductSupplierID": {
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64",
+          "x-foreignKey": {
+            "parentTable": "ProductSuppliers",
+            "parentEntityType": "ProductSupplier",
+            "type": "ProductSupplier",
+            "principalKey": "ProductSupplierID",
+            "name": "ProductSupplier",
+            "textProperty": "ProductSupplierName",
+            "navigationProperty": "ProductSupplies"
+          }
+        },
+        "Product": {
+          "type": "object",
+          "$ref": "#/definitions/Product"
+        },
+        "ProductID": {
+          "x-nullable": false,
+          "x-precision": 19,
+          "type": "integer",
+          "format": "int64",
+          "x-foreignKey": {
+            "parentTable": "Products",
+            "parentEntityType": "Product",
+            "type": "Product",
+            "principalKey": "ProductID",
+            "name": "Product",
+            "textProperty": "ProductName",
+            "navigationProperty": "ProductSupplies"
+          }
+        },
+        "QuantityInLitres": {
+          "x-nullable": false,
+          "x-precision": 18,
+          "x-scale": 2,
+          "type": "number",
+          "format": "decimal"
+        }
+      }
+    },
+    "ProductType": {
+      "x-table": "dbo.ProductTypes",
+      "resource": "ProductTypes",
+      "required": [
+        "ProductTypeName"
+      ],
+      "properties": {
+        "ProductTypeID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "ProductType",
+              "name": "Products",
+              "type": "Product"
+            }
+          ]
+        },
+        "ProductTypeName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "Products": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/AspNetRoles": {
+      "get": {
+        "operationId": "getAspNetRoles",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetRole"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetRole",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetRoleClaims": {
+      "get": {
+        "operationId": "getAspNetRoleClaims",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetRoleClaim"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetRoleClaim",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetRoleClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUsers": {
+      "get": {
+        "operationId": "getAspNetUsers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUser"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUser",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUser",
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserClaims": {
+      "get": {
+        "operationId": "getAspNetUserClaims",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUserClaim"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUserClaim",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserLogins": {
+      "get": {
+        "operationId": "getAspNetUserLogins",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUserLogin"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUserLogin",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserLogin",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserRoles": {
+      "get": {
+        "operationId": "getAspNetUserRoles",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUserRole"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUserRole",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserTokens": {
+      "get": {
+        "operationId": "getAspNetUserTokens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/AspNetUserToken"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createAspNetUserToken",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserToken",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Customers": {
+      "get": {
+        "operationId": "getCustomers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Customer"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCustomer",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Customer",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/CustomerTypes": {
+      "get": {
+        "operationId": "getCustomerTypes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/CustomerType"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createCustomerType",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "CustomerType",
+            "schema": {
+              "$ref": "#/definitions/CustomerType"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/CustomerType"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Genders": {
+      "get": {
+        "operationId": "getGenders",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Gender"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createGender",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Gender",
+            "schema": {
+              "$ref": "#/definitions/Gender"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Gender"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Products": {
+      "get": {
+        "operationId": "getProducts",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProduct",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Product",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductSales": {
+      "get": {
+        "operationId": "getProductSales",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ProductSale"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProductSale",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductSale",
+            "schema": {
+              "$ref": "#/definitions/ProductSale"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ProductSale"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductSuppliers": {
+      "get": {
+        "operationId": "getProductSuppliers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ProductSupplier"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProductSupplier",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductSupplier",
+            "schema": {
+              "$ref": "#/definitions/ProductSupplier"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ProductSupplier"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductSupplies": {
+      "get": {
+        "operationId": "getProductSupplies",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ProductSupply"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProductSupply",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductSupply",
+            "schema": {
+              "$ref": "#/definitions/ProductSupply"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ProductSupply"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductTypes": {
+      "get": {
+        "operationId": "getProductTypes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ProductType"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProductType",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductType",
+            "schema": {
+              "$ref": "#/definitions/ProductType"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ProductType"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetRoles('{Id}')": {
+      "delete": {
+        "operationId": "deleteAspNetRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetRoleById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAspNetRoleChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetRole"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetRoleClaims({Id})": {
+      "delete": {
+        "operationId": "deleteAspNetRoleClaim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetRoleClaimById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetRoleClaim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "AspNetRoleClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAspNetRoleClaimChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetRoleClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetRoleClaim"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUsers('{Id}')": {
+      "delete": {
+        "operationId": "deleteAspNetUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUser",
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAspNetUserChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUser",
+            "schema": {
+              "$ref": "#/definitions/AspNetUser"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserClaims({Id})": {
+      "delete": {
+        "operationId": "deleteAspNetUserClaim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserClaimById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUserClaim",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUserClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAspNetUserClaimChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserClaim",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserClaim"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserLogins(LoginProvider='{LoginProvider}',ProviderKey='{ProviderKey}')": {
+      "delete": {
+        "operationId": "deleteAspNetUserLogin",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ProviderKey",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserLoginByLoginProviderAndProviderKey",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ProviderKey",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUserLogin",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "ProviderKey",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUserLogin",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAspNetUserLoginChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserLogin",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserRoles(UserId='{UserId}',RoleId='{RoleId}')": {
+      "delete": {
+        "operationId": "deleteAspNetUserRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "RoleId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserRoleByUserIdAndRoleId",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "RoleId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUserRole",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "RoleId",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUserRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAspNetUserRoleChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserRole",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserRole"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/AspNetUserTokens(UserId='{UserId}',LoginProvider='{LoginProvider}',Name='{Name}')": {
+      "delete": {
+        "operationId": "deleteAspNetUserToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Name",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAspNetUserTokenByUserIdAndLoginProviderAndName",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Name",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateAspNetUserToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "UserId",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "LoginProvider",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "AspNetUserToken",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelAspNetUserTokenChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "AspNetUserToken",
+            "schema": {
+              "$ref": "#/definitions/AspNetUserToken"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Customers({CustomerID})": {
+      "delete": {
+        "operationId": "deleteCustomer",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "CustomerID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCustomerByCustomerID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "CustomerID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCustomer",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "CustomerID",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "Customer",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelCustomerChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Customer",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/CustomerTypes({CustomerTypeID})": {
+      "delete": {
+        "operationId": "deleteCustomerType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "CustomerTypeID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getCustomerTypeByCustomerTypeID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "CustomerTypeID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/CustomerType"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateCustomerType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "CustomerTypeID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "CustomerType",
+            "schema": {
+              "$ref": "#/definitions/CustomerType"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelCustomerTypeChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "CustomerType",
+            "schema": {
+              "$ref": "#/definitions/CustomerType"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Genders({GenderID})": {
+      "delete": {
+        "operationId": "deleteGender",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "GenderID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getGenderByGenderID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "GenderID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Gender"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateGender",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "GenderID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Gender",
+            "schema": {
+              "$ref": "#/definitions/Gender"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelGenderChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Gender",
+            "schema": {
+              "$ref": "#/definitions/Gender"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Products({ProductID})": {
+      "delete": {
+        "operationId": "deleteProduct",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProductByProductID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProduct",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductID",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "Product",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelProductChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Product",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductSales({ProductSaleID})": {
+      "delete": {
+        "operationId": "deleteProductSale",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductSaleID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProductSaleByProductSaleID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductSaleID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductSale"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProductSale",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductSaleID",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "ProductSale",
+            "schema": {
+              "$ref": "#/definitions/ProductSale"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelProductSaleChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductSale",
+            "schema": {
+              "$ref": "#/definitions/ProductSale"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductSuppliers({ProductSupplierID})": {
+      "delete": {
+        "operationId": "deleteProductSupplier",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductSupplierID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProductSupplierByProductSupplierID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductSupplierID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductSupplier"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProductSupplier",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductSupplierID",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "ProductSupplier",
+            "schema": {
+              "$ref": "#/definitions/ProductSupplier"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelProductSupplierChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductSupplier",
+            "schema": {
+              "$ref": "#/definitions/ProductSupplier"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductSupplies({SupplyID})": {
+      "delete": {
+        "operationId": "deleteProductSupply",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "SupplyID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProductSupplyBySupplyID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "SupplyID",
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductSupply"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProductSupply",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "SupplyID",
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "ProductSupply",
+            "schema": {
+              "$ref": "#/definitions/ProductSupply"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelProductSupplyChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductSupply",
+            "schema": {
+              "$ref": "#/definitions/ProductSupply"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ProductTypes({ProductTypeID})": {
+      "delete": {
+        "operationId": "deleteProductType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductTypeID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getProductTypeByProductTypeID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductTypeID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProductType"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateProductType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ProductTypeID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "ProductType",
+            "schema": {
+              "$ref": "#/definitions/ProductType"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelProductTypeChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ProductType",
+            "schema": {
+              "$ref": "#/definitions/ProductType"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/ConData",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

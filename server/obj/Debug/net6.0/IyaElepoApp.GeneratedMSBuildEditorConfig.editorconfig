@@ -1,0 +1,164 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = IyaElepoApp
+build_property.RootNamespace = IyaElepoApp
+build_property.ProjectDir = C:\IyaElepoApp\server\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\IyaElepoApp\server
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/IyaElepoApp/server/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddApplicationRole.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQXBwbGljYXRpb25Sb2xlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddApplicationUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQXBwbGljYXRpb25Vc2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddCustomer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQ3VzdG9tZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddCustomerType.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQ3VzdG9tZXJUeXBlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddProduct.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUHJvZHVjdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddProductSale.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUHJvZHVjdFNhbGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddProductSupplier.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUHJvZHVjdFN1cHBsaWVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddProductSupply.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUHJvZHVjdFN1cHBseS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/AddProductType.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkUHJvZHVjdFR5cGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/ApplicationRoles.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwbGljYXRpb25Sb2xlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/ApplicationUsers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwbGljYXRpb25Vc2Vycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/Customers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/CustomerTypes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJUeXBlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/EditApplicationUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdEFwcGxpY2F0aW9uVXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/EditCustomer.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdEN1c3RvbWVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/EditCustomerType.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdEN1c3RvbWVyVHlwZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/EditProduct.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFByb2R1Y3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/EditProductSale.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFByb2R1Y3RTYWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/EditProductSupplier.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFByb2R1Y3RTdXBwbGllci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/EditProductSupply.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFByb2R1Y3RTdXBwbHkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/EditProductType.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFByb2R1Y3RUeXBlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/Products.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/ProductSales.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFNhbGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/ProductSuppliers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFN1cHBsaWVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/ProductSupplies.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFN1cHBsaWVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/ProductTypes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFR5cGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/Profile.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/RegisterApplicationUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJBcHBsaWNhdGlvblVzZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/Unauthorized.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5hdXRob3JpemVkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Shared/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Shared/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlZGlyZWN0VG9Mb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/IyaElepoApp/server/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

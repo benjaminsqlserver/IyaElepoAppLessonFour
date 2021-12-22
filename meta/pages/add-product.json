@@ -1,0 +1,256 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ProductName",
+                              "name": "ProductNameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Product Name",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "ProductName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${product.ProductName}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "ProductName",
+                              "name": "ProductNameRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Product Name is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ProductTypeID",
+                              "name": "ProductTypeIDLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Product Type",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getProductTypesResult}",
+                              "name": "ProductTypeID",
+                              "placeholder": "Choose Product Type",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "ProductTypeName",
+                              "type": "dropdown",
+                              "value": "${product.ProductTypeID}",
+                              "valueProperty": "ProductTypeID",
+                              "valueType": "int"
+                            },
+                            {
+                              "component": "ProductTypeID",
+                              "defaultValue": "0",
+                              "name": "ProductTypeIDRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Product Type is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Picture",
+                              "name": "PictureLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Picture",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "chooseText": "Choose A Picture",
+                              "name": "fileInput0",
+                              "type": "file-input",
+                              "value": "${product.Picture}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${product}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new Product!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "ConData.createProduct",
+                        "parameters": [
+                          {
+                            "name": "Product",
+                            "value": "${product}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "result": "${product}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "IyaElepoApp.Models.ConData.Product",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${product != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "ConData.getProductTypes",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getProductTypesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<IyaElepoApp.Models.ConData.ProductType>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "product",
+        "type": "set",
+        "value": "new IyaElepoApp.Models.ConData.Product(){}",
+        "valueType": "IyaElepoApp.Models.ConData.Product"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Product",
+  "access": [
+    "Authenticated"
+  ]
+}
